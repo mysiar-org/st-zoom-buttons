@@ -38,13 +38,15 @@ def st_zoom_buttons(
     width: str
         The width of the buttons.
     border_radius: int - buttons border radius in pixels
+    disabled: list - list of buttons to disable, possible values are: zoom_out, zoom_reset, zoom_in
     Returns
     -------
     str
         Value of the key that been pressed.
-        Values are: first, previous, next, last
+        Values are: zoom_out, zoom_reset, zoom_in
         This is the value passed to `Streamlit.setComponentValue` on the
         frontend.
+
 
 
     """
