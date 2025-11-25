@@ -7,6 +7,9 @@ const borderColor: string = "#D3D3D3"
 
 const span = document.body.appendChild(document.createElement("span"))
 
+const title_el = span.appendChild(document.createElement("span"))
+
+
 const zoom_out = span.appendChild(document.createElement("button"))
 zoom_out.textContent = "-"
 zoom_out.setAttribute("title", "Zoom Out")
@@ -53,6 +56,7 @@ function onRender(event: Event): void {
         width,
         border_radius,
         key,
+        title,
         disabled = []
     } = args
 
@@ -71,8 +75,15 @@ function onRender(event: Event): void {
     } as CSSStyleDeclaration
 
 
+    if (title) {
+        title_el.textContent = title
+        title_el.style.fontSize = font_size
+        title_el.style.marginRight = "10px"
+    }
+
     if (data.theme) {
         const theme = data.theme
+
         for (const { element: button, name } of zoomButtons) {
             Object.assign(button.style, buttonStyle)
 

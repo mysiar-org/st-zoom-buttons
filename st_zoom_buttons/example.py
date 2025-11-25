@@ -7,7 +7,7 @@ st.title("Zoom buttons")
 
 for font_size in range(10, 20):
     st.write(f"Font size {font_size}")
-    clicked_button = st_zoom_buttons(key=f"szb-br0-{font_size}", font_size=f"{font_size}px")
+    clicked_button = st_zoom_buttons(key=f"szb-br0-{font_size}", font_size=f"{font_size}px", title="Zoom")
     st.write(f"Clicked: {clicked_button}")
     clicked_button = st_zoom_buttons(key=f"szb-br8-{font_size}", border_radius=12, font_size=f"{font_size}px")
     st.write(f"Clicked: {clicked_button}")
