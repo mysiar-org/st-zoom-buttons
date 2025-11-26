@@ -32,18 +32,25 @@ const zoomButtons = [
     { element: zoom_in, name: "zoom_in" },
 ]
 
+
 function darkenColor(hex: string, percent: number): string {
     hex = hex.replace(/^#/, "");
     const num = parseInt(hex, 16);
+
     let r = (num >> 16) & 255;
     let g = (num >> 8) & 255;
     let b = num & 255;
 
-    r = Math.max(0, Math.floor(r * (1 - percent / 100)));
-    g = Math.max(0, Math.floor(g * (1 - percent / 100)));
-    b = Math.max(0, Math.floor(b * (1 - percent / 100)));
+    const factor = 1 - percent / 100;
 
-    return `#${(r << 16 | g << 8 | b).toString(16).padStart(6, "0")}`;
+    r = Math.max(0, Math.floor(r * factor));
+    g = Math.max(0, Math.floor(g * factor));
+    b = Math.max(0, Math.floor(b * factor));
+
+    // Explicit parentheses to satisfy ESLint no-mixed-operators
+    const combined = ((r << 16) | (g << 8) | b);
+
+    return `#${combined.toString(16).padStart(6, "0")}`;
 }
 
 

@@ -31,6 +31,7 @@ def st_zoom_buttons(
     font_size="10px",
     width="35px",
     border_radius: int = 0,
+    title: str = "",
     disabled: list[str] | None = None,
 ) -> str:
 ```
