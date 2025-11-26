@@ -72,9 +72,6 @@ def st_zoom_buttons(
         border_radius=border_radius,
         title=title,
         disabled=disabled,
-        on_zoom_in=on_zoom_in,
-        on_zoom_out=on_zoom_out,
-        on_zoom_reset=on_zoom_reset,
         default=None,
     )
 

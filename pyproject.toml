@@ -2,7 +2,7 @@
 name = "st-zoom-buttons"
 authors = ["Piotr Synowiec <psynowiec@gmail.com>"]
 description = "Streamlit zoom buttons component"
-version = "0.0.3"
+version = "0.0.4"
 [tool.poetry.dependencies]
 python = "^3.8"
 streamlit = ">= 0.63"
