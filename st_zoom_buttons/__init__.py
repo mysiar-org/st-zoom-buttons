@@ -2,6 +2,8 @@ import os
 
 import streamlit.components.v1 as components
 
+from typing import Callable, Optional
+
 _RELEASE = True
 
 if os.getenv("_ST_ZOOM_BUTTONS_NOT_RELEASE_"):
@@ -25,6 +27,9 @@ def st_zoom_buttons(
     border_radius: int = 0,
     title: str = "",
     disabled: list[str] | None = None,
+    on_zoom_in: Optional[Callable[[], None]] = None,
+    on_zoom_out: Optional[Callable[[], None]] = None,
+    on_zoom_reset: Optional[Callable[[], None]] = None,
 ):
     """Create a new instance of "zoom_buttons".
 
@@ -40,6 +45,12 @@ def st_zoom_buttons(
         The width of the buttons.
     border_radius: int - buttons border radius in pixels
     disabled: list - list of buttons to disable, possible values are: zoom_out, zoom_reset, zoom_in
+    on_zoom_in: Callable or None
+        An optional callback that will be invoked when the zoom in button is clicked.
+    on_zoom_out: Callable or None
+        An optional callback that will be invoked when the zoom out button is clicked.
+    on_zoom_reset: Callable or None
+        An optional callback that will be invoked when the zoom reset button is clicked.
     Returns
     -------
     str
@@ -54,14 +65,24 @@ def st_zoom_buttons(
     if disabled is None:
         disabled = []
 
-    component_value = _component_func(
+    clicked = _component_func(
         key=key,
         font_size=font_size,
         width=width,
         border_radius=border_radius,
         title=title,
         disabled=disabled,
+        on_zoom_in=on_zoom_in,
+        on_zoom_out=on_zoom_out,
+        on_zoom_reset=on_zoom_reset,
         default=None,
     )
 
-    return component_value
+    if clicked == "zoom_in" and on_zoom_in is not None:
+        on_zoom_in()
+    elif clicked == "zoom_out" and on_zoom_out is not None:
+        on_zoom_out()
+    elif clicked == "zoom_reset" and on_zoom_reset is not None:
+        on_zoom_reset()
+
+    return clicked

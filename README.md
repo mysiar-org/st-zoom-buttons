@@ -33,6 +33,9 @@ def st_zoom_buttons(
     border_radius: int = 0,
     title: str = "",
     disabled: list[str] | None = None,
+    on_zoom_in: Optional[Callable[[], None]] = None,
+    on_zoom_out: Optional[Callable[[], None]] = None,
+    on_zoom_reset: Optional[Callable[[], None]] = None,
 ) -> str:
 ```
 
